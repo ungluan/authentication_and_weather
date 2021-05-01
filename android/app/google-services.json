@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "167901496642",
+    "project_id": "authentication-and-weather-app",
+    "storage_bucket": "authentication-and-weather-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167901496642:android:49fc74933b7c2aa3ee74db",
+        "android_client_info": {
+          "package_name": "com.example.authentication_and_weather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167901496642-90umqubci3vq934248p710e51kgupa3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.authentication_and_weather",
+            "certificate_hash": "279275c70a8695a037e2522c94e936011362aed6"
+          }
+        },
+        {
+          "client_id": "167901496642-9une8nrucs3nm7tkjb0qoh18jqaae482.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGdzZa9ZrRuv2j4EqQHxF5vP2n0__zPAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167901496642-9une8nrucs3nm7tkjb0qoh18jqaae482.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
