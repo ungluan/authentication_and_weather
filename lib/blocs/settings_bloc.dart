@@ -5,16 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc():
         super(
-          SettingsStateTemperatureUnitCelsius(),
+          SettingsState(temperatureUnit: TemperatureUnit.celsius)
         );
 
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent settingsEvent) async* {
     if (settingsEvent is SettingEventTemperatureUnitChanged) {
-      if (state is SettingsStateTemperatureUnitCelsius)
-        yield SettingsStateTemperatureUnitFahrenheit();
-      else
-        yield SettingsStateTemperatureUnitCelsius();
+      yield SettingsState(
+        temperatureUnit: state.temperatureUnit == TemperatureUnit.celsius ?
+            TemperatureUnit.fahrenheit : TemperatureUnit.celsius
+      );
     }
   }
 }

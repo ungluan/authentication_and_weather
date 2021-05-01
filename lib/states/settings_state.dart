@@ -1,20 +1,16 @@
 import 'package:equatable/equatable.dart';
-
-abstract class SettingsState extends Equatable {}
+import 'package:flutter/material.dart';
 
 enum TemperatureUnit { celsius, fahrenheit }
 
-class SettingsStateTemperatureUnitCelsius extends SettingsState {
-  final TemperatureUnit temperatureUnitCelsius = TemperatureUnit.celsius;
+class SettingsState extends Equatable {
+  final TemperatureUnit temperatureUnit;
+
+  SettingsState({
+    @required this.temperatureUnit,
+  }):assert(temperatureUnit!=null);
 
   @override
   // TODO: implement props
-  List<Object> get props => [temperatureUnitCelsius];
-}
-class SettingsStateTemperatureUnitFahrenheit extends SettingsState{
-  final TemperatureUnit temperatureUnitFahrenheit = TemperatureUnit.fahrenheit;
-
-  @override
-  // TODO: implement props
-  List<Object> get props => [temperatureUnitFahrenheit];
+  List<Object> get props => [temperatureUnit];
 }

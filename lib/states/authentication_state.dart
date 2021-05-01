@@ -17,7 +17,7 @@ class AuthenticationStateSuccess extends AuthenticationState{
 
   @override
   // TODO: implement props
-  List<Object> get props => [_user , DateTime.now()];
+  List<Object> get props => [_user];
 }
 class AuthenticationStateFailure extends AuthenticationState{
   @override

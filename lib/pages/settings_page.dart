@@ -31,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     Switch(
                         value:
-                            settingsState is SettingsStateTemperatureUnitCelsius
+                            settingsState.temperatureUnit == TemperatureUnit.celsius
                                 ? true
                                 : false,
                         onChanged: (value) {

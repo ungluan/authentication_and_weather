@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 abstract class RegisterEvent extends Equatable{}
 
 class RegisterEventEmailChanged extends RegisterEvent{
-  // Truyển vào email đã thay đổi
   final String email;
   RegisterEventEmailChanged({@required this.email});
   @override

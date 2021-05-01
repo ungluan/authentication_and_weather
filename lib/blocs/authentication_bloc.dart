@@ -4,35 +4,40 @@ import 'package:authentication_and_weather/user_repository/user_repository.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState>{
+class AuthenticationBloc
+    extends Bloc<AuthenticationEvent, AuthenticationState> {
   // Cần user repository để thực hiện login _ logout
-  final UserRepository _userRepository ;
-  // State khi khởi tạo sẽ là Initialized
-  AuthenticationBloc({@required UserRepository userRepository}) :
-        assert(userRepository!=null),
+  final UserRepository _userRepository;
+
+  AuthenticationBloc({@required UserRepository userRepository})
+      : assert(userRepository != null),
         this._userRepository = userRepository,
         super(AuthenticationStateInitialize());
 
   @override
-  Stream<AuthenticationState> mapEventToState(AuthenticationEvent authenticationEvent) async* {
-    if(authenticationEvent is AuthenticationEventStarted){
+  Stream<AuthenticationState> mapEventToState(
+      AuthenticationEvent authenticationEvent) async* {
+    if (authenticationEvent is AuthenticationEventStarted) {
+      // Kiểm tra đăng nhập chưa
       final isSignedIn = _userRepository.isSignedIn();
-      if(isSignedIn){
-        yield AuthenticationStateSuccess(user: _userRepository.getUser(),);
-      }
-      else{
+      // LoggedIn: Initial -> (Success + User)
+      if (isSignedIn) {
+        yield AuthenticationStateSuccess(
+          user: _userRepository.getUser(),
+        );
+      } else { // LoggedOut or The first login -> Failure
         yield AuthenticationStateFailure();
       }
-    }
-    else if(authenticationEvent is AuthenticationEventLoggedIn){
-      yield AuthenticationStateSuccess(user: _userRepository.getUser(),);
-    }
-    else if(authenticationEvent   is AuthenticationEventLoggedOut){
-      try{
+    } else if (authenticationEvent is AuthenticationEventLoggedIn) {
+      yield AuthenticationStateSuccess(
+        user: _userRepository.getUser(),
+      );
+    } else if (authenticationEvent is AuthenticationEventLoggedOut) {
+      try {
+        // await logout then yield Failure
         await _userRepository.signOut();
         yield AuthenticationStateFailure();
-      }
-      catch(e){
+      } catch (e) {
         print(e);
       }
     }

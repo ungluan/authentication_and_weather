@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPages> {
                       TextFormField(
                         controller: emailController,
                         validator: emailValidator,
-                        // autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.email,

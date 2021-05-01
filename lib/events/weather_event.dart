@@ -26,8 +26,8 @@ class WeatherEventResearched extends WeatherEvent {
   // TODO: implement props
   List<Object> get props => [cityName];
 }
-class WeatherEventResearchedFirst extends WeatherEvent{
-  @override
-  // TODO: implement props
-  List<Object> get props => [];
-}
+// class WeatherEventResearchedFirst extends WeatherEvent{
+//   @override
+//   // TODO: implement props
+//   List<Object> get props => [];
+// }

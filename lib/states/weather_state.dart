@@ -1,7 +1,5 @@
-import 'package:authentication_and_weather/models/location.dart';
 import 'package:authentication_and_weather/models/weather.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 abstract class WeatherState extends Equatable{}
 
@@ -10,6 +8,7 @@ class WeatherStateCityNameChanged extends WeatherState{
   // TODO: implement props
   List<Object> get props => [];
 }
+
 class WeatherStateInitialize extends WeatherState{
   WeatherStateInitialize();
   @override

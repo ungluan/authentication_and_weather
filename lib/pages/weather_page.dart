@@ -4,7 +4,7 @@ import 'package:authentication_and_weather/blocs/settings_bloc.dart';
 import 'package:authentication_and_weather/blocs/weather_bloc.dart';
 import 'package:authentication_and_weather/events/authentication_event.dart';
 import 'package:authentication_and_weather/events/weather_event.dart';
-import 'package:authentication_and_weather/models/ColorsContainer.dart';
+import 'package:authentication_and_weather/models/color_layout.dart';
 import 'package:authentication_and_weather/pages/researchable_city_page.dart';
 import 'package:authentication_and_weather/pages/settings_page.dart';
 import 'package:authentication_and_weather/states/authentication_state.dart';
@@ -146,10 +146,9 @@ class WeatherPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: weatherState.listWeather.length,
                         itemBuilder: (context, index) {
-                          ColorsContainer colors = ColorsContainer.getColorsContainer(
-                              weatherState.listWeather[index].weatherStateAbbr,
+                          ColorLayout colors = ColorLayout.getColorsContainer(
+                              weatherState.listWeather[index].weatherStateName,
                           );
-                          print(weatherState.listWeather[index].weatherStateAbbr);
                           return Container(
                             padding: EdgeInsets.symmetric(horizontal: 32, vertical: 32,),
                             width: MediaQuery.of(context).size.width,
@@ -201,8 +200,7 @@ class WeatherPage extends StatelessWidget {
                                       int value = weatherState
                                           .listWeather[index].theTemp
                                           .toInt();
-                                      if (settingsState
-                                          is SettingsStateTemperatureUnitCelsius) {
+                                      if (settingsState.temperatureUnit == TemperatureUnit.celsius) {
                                         return Text(
                                           '$value°C',
                                           style: TextStyle(
@@ -223,7 +221,7 @@ class WeatherPage extends StatelessWidget {
                                   ),
                                   Text(
                                     weatherState
-                                        .listWeather[index].weatherStateName,
+                                        .listWeather[index].weatherStateName.toString(),
                                     style: TextStyle(
                                       color: colors.textColor,
                                       fontSize: 24,
@@ -255,7 +253,7 @@ class WeatherPage extends StatelessWidget {
                                                 Text(
                                                   'Humidity',
                                                   style: TextStyle(
-                                                      color: Colors.white54,
+                                                      color: Colors.grey.shade300,
                                                       ),
                                                 ),
                                                 Text(
@@ -274,7 +272,7 @@ class WeatherPage extends StatelessWidget {
                                                 Text(
                                                   'Pressure',
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color: Colors.grey.shade300,
                                                       ),
                                                 ),
                                                 Text(
@@ -300,7 +298,7 @@ class WeatherPage extends StatelessWidget {
                                                 Text(
                                                   'Wind speed',
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color: Colors.grey.shade300,
                                                   ),
                                                 ),
                                                 Text(
@@ -318,7 +316,7 @@ class WeatherPage extends StatelessWidget {
                                                 Text(
                                                   'Predictability',
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color: Colors.grey.shade300,
                                                   ),
                                                 ),
                                                 Text(
@@ -374,7 +372,7 @@ class WeatherPage extends StatelessWidget {
                       );
                     }
                     BlocProvider.of<WeatherBloc>(context)
-                        .add(WeatherEventResearchedFirst());
+                        .add(WeatherEventStarted());
                     return Container(
                       child: Center(
                         child: Column(

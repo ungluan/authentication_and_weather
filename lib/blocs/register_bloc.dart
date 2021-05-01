@@ -26,8 +26,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       );
     } else if (registerEvent is RegisterEventWithEmailAndPassword) {
       if (state.isValidEmailAndPassword()) {
-        // Kiểm tra đoạn này có await hay không
-        // ideally: không cho await để nó nhảy vào Loading, sau đó nhảy vào Success
         yield RegisterState.loading();
         try {
           await _userRepository.createUserWithEmailAndPassword(

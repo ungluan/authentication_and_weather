@@ -3,10 +3,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 
 class UserRepository {
-  // final clientId = '559f8edf0e4a93d1f23b';
-  // final clientSecret = "e4d645d107a9430256d5542b5e08d7e78fdb16fb";
-  // final redirectUrl =
-  //     'https://my-project.firebaseapp.com/__/auth/handler';
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   GoogleSignIn googleSignIn = GoogleSignIn();
   FacebookLogin fb = FacebookLogin();
@@ -14,8 +10,7 @@ class UserRepository {
   Future<UserCredential> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
-      return
-          await firebaseAuth.createUserWithEmailAndPassword(
+      return await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -55,25 +50,14 @@ class UserRepository {
         .signInWithCredential(facebookAuthCredential);
   }
 
-  // Future<UserCredential> signInWithGithub() async {
-  //   final GitHubSignIn gitHubSignIn = GitHubSignIn(
-  //       clientId: clientId,
-  //       clientSecret: clientSecret,
-  //       redirectUrl: redirectUrl);
-  //
-  //   final result = await gitHubSignIn.signIn(context);
-  //   final AuthCredential authCredential = GithubAuthProvider.credential(result.token);
-  //   return await FirebaseAuth.instance.signInWithCredential(authCredential);
-  // }
-
-  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+  Future<UserCredential> signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential userCredential =
           await firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return true;
+      return userCredential;
     } on FirebaseException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -81,16 +65,15 @@ class UserRepository {
         print('Wrong password provided for that user.');
       }
     }
-    return false;
+    return null;
   }
 
   Future signOut() async {
-    try{
+    try {
       await FirebaseAuth.instance.signOut();
       await googleSignIn.signOut();
       await fb.logOut();
-    }
-    catch(e){
+    } catch (e) {
       print(e);
     }
   }

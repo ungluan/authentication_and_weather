@@ -15,26 +15,22 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   Stream<WeatherState> mapEventToState(WeatherEvent weatherEvent) async* {
     if (weatherEvent is WeatherEventCityNameChanged) {
       yield WeatherStateCityNameChanged();
-    }
-    else if(weatherEvent is WeatherEventResearchedFirst){
+    } else if (weatherEvent is WeatherEventStarted) {
       yield WeatherStateLoading();
-      final listWeather = await _weatherRepositories.fetchDataWeather(_weatherRepositories.location);
-      if(listWeather!=null){
-        yield WeatherStateResearchSuccess(listWeather: listWeather );
-      }
-      else yield WeatherStateResearchFailure();
-    }
-    else if (weatherEvent is WeatherEventResearched) {
-      yield WeatherStateLoading();
-      final listWeather =
-          await _weatherRepositories.fetchDataWeathers(weatherEvent.cityName);
+      final listWeather = await _weatherRepositories.fetchDataWeathers(
+          location: _weatherRepositories.location, cityName: null);
       if (listWeather != null) {
         yield WeatherStateResearchSuccess(listWeather: listWeather);
-      }
-      else
+      } else
+        yield WeatherStateResearchFailure();
+    } else if (weatherEvent is WeatherEventResearched) {
+      yield WeatherStateLoading();
+      final listWeather = await _weatherRepositories.fetchDataWeathers(
+          cityName: weatherEvent.cityName, location: null);
+      if (listWeather != null) {
+        yield WeatherStateResearchSuccess(listWeather: listWeather);
+      } else
         yield WeatherStateResearchFailure();
     }
-    else if (weatherEvent is WeatherEventStarted)
-      yield WeatherStateInitialize();
   }
 }

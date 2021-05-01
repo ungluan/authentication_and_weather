@@ -8,7 +8,6 @@ class LoginState extends Equatable{
   final bool isSuccess;
   final bool isFailure;
 
-
   LoginState({this.isLoading, this.isSuccess, this.isFailure, this.isValidEmail, this.isValidPassword });
 
   bool isValidEmailAndPassword() => isValidEmail && isValidPassword;
@@ -21,6 +20,7 @@ class LoginState extends Equatable{
       isFailure: false,
     );
   }
+
   factory LoginState.loading(){
     return LoginState(
       isValidEmail: true,
@@ -39,6 +39,7 @@ class LoginState extends Equatable{
       isFailure: false,
     );
   }
+
   factory LoginState.failure(){
     return LoginState(
       isValidEmail: true,
