@@ -1,3 +1,4 @@
+import 'package:authentication_and_weather/Constants/size_config.dart';
 import 'package:flutter/material.dart';
 
 class SocialMediaButton extends StatelessWidget {
@@ -14,9 +15,9 @@ class SocialMediaButton extends StatelessWidget {
     return GestureDetector(
       onTap: function,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
-        height: 60,
-        width: 60,
+        margin: EdgeInsets.only(top: 5, left: 5),
+        height: 8*SizeConfig.blocHeight,
+        width: 8*SizeConfig.blocHeight,
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(50),

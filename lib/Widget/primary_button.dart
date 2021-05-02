@@ -12,9 +12,11 @@ class PrimaryButton extends StatelessWidget {
     return GestureDetector(
       onTap: function,
       child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 32),
+        height: 50,
         decoration: BoxDecoration(
             color: ColorsApp.primaryColor,
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(20),
             gradient: LinearGradient(
               colors: [
                 ColorsApp.primaryColor,
@@ -22,14 +24,14 @@ class PrimaryButton extends StatelessWidget {
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomLeft,
-            )),
-        padding: EdgeInsets.all(20),
+            ),
+        ),
         child: Center(
           child: Text(
             btnText,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 24,
             ),
           ),
         ),
